@@ -1,6 +1,11 @@
 <!doctype html>
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
+    console.log("DOM fully loaded and parsed");
+    document.getElementById("demo").innerHTML = Date();
+  });
+  
+  window.onload = function(){  
     var myDate = new Date();
     var month=new Array();
     month =[ "Jan",    "Feb",    "Mar",    "Apr",    "May",    "Jun",
@@ -18,14 +23,14 @@
     //var utcDate = '2011-06-29T16:52:48.000Z';  // ISO-8601 formatted date returned from server
     //var localDate = new Date(utcDate);
     //var localDate = myDate;
-    document.getElementById("demo").innerHTML = myDateStr;
-  });
+    //document.getElementById("demo").innerHTML = myDateStr;
+  }  
 </script>
 
 <html>
 <body>
 
-<p>Your timezone V4:</p>
+<p>Your timezone:</p>
 <p id="demo">asdfsdfasdfsadfsadfsadfsdaf</p>
 
 </body>
