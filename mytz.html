@@ -1,0 +1,16 @@
+<!doctype html>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js'></script>
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Your timezone:</p>
+<p id="demo"></p>
+
+<script>
+  var timezone = jstz.determine();
+  document.getElementById("demo").innerHTML = timezone.name();
+</script>
+
+</body>
+</html>
