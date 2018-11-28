@@ -1,7 +1,14 @@
 <!doctype html>
 <script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    var myDate = new Date();
+  function SetNewsLocalTime(event) {
+	var utcDate = document.getElementById("inputGmt").innerHTML;
+	document.getElementById("demoLocalTime").innerHTML = "==>" + UTC2LocalTimeStr(utcDate);
+  }
+  
+  function UTC2LocalTimeStr(utcDate) {
+	var localDate = new Date(utcDate);
+	myDate =localDate 
+      
     var month=new Array();
     month =[ "Jan",    "Feb",    "Mar",    "Apr",    "May",    "Jun",
              "Jul",    "Aug",    "Sep",    "Oct",    "Nov",    "Dec" ];
@@ -12,21 +19,34 @@
     hours = hours < 10 ? '0'+hours: hours;
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = hours + ':' + minutes + ampm;
-    // e.g. "13 Nov 2016 11:00pm";
-    //alert(myDate.getDate()+" "+month[myDate.getMonth()]+" "+myDate.getFullYear()+" "+strTime);
     var myDateStr=myDate.getDate()+" "+month[myDate.getMonth()]+" "+myDate.getFullYear()+" "+strTime;
-    //var utcDate = '2011-06-29T16:52:48.000Z';  // ISO-8601 formatted date returned from server
-    //var localDate = new Date(utcDate);
-    //var localDate = myDate;
-    document.getElementById("demo").innerHTML = myDateStr;
-  });
+    
+    //start test - raw calc offset
+	var rightNow = new Date();
+	var jan1 = new Date(rightNow.getFullYear(), 0, 1, 0, 0, 0, 0);
+	var temp = jan1.toGMTString();
+	var jan2 = new Date(temp.substring(0, temp.lastIndexOf(" ")-1));
+	var myOffset = (jan1 - jan2) / (1000 * 60 * 60);	
+    document.getElementById("demoOffset").innerHTML = "==>"  + myOffset;
+    //end test
+    
+    return myDateStr;
+  }
+  
+  document.addEventListener("DOMContentLoaded", SetNewsLocalTime);
 </script>
 
 <html>
 <body>
+<p>Version 5</p>
+<p>Input GMT time:</p>
+<p id="inputGmt">2011-06-29T16:52:49.000Z</p>
 
-<p>Your timezone V5:</p>
-<p id="demo">asdfsdfasdfsadfsadfsadfsdaf</p>
+<p>Your local timezone:</p>
+<p id="demoLocalTime">asdfsdfasdfsadfsadfsadfsdaf</p>
+
+<p>Your timezone offset:</p>
+<p id="demoOffset">asdfsdfasdfsadfsadfsadfsdaf</p>
 
 </body>
 </html>
