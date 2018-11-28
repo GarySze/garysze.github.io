@@ -1,7 +1,7 @@
 <!doctype html>
 <script>
   function SetNewsLocalTime(event) {
-	var utcDate = document.getElementById("inputGmt").innerHTML;
+	var utcDate = document.getElementById("inputGmt").value;
 	document.getElementById("demoLocalTime").innerHTML = "==>" + UTC2LocalTimeStr(utcDate);
   }
   
@@ -39,8 +39,8 @@
 <html>
 <body>
 <p>Version 5</p>
-<p>Input GMT time:</p>
-<p id="inputGmt">2018-11-27T09:52:49.000Z</p>
+Input GMT time: <input type="text" size="24" id="inputGmt" value="2018-11-27T09:52:49.000Z">
+<button onclick="SetNewsLocalTime()">Calc again!</button>
 
 <p>Your local timezone:</p>
 <p id="demoLocalTime">asdfsdfasdfsadfsadfsadfsdaf</p>
